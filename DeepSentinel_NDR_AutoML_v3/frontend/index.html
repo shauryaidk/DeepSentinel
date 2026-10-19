@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepSentinel • Live Traffic Monitor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+  <div class="brand"><div class="logo">DS</div><div><b>DeepSentinel</b><span>PASSIVE SOC</span></div></div>
+  <nav><button class="active">◉ Live Traffic</button><button>◈ Threat Monitor</button><button>⌁ Analytics</button><button>⚙ System</button></nav>
+  <div class="enclave"><div class="small">MONITORING ENCLAVE</div><div class="secure"><i></i> READ-ONLY INGEST</div><p>No packet injection<br>No probes<br>No return path</p></div>
+</aside>
+<main>
+<header><div><div class="eyebrow">UNIDIRECTIONAL NETWORK OBSERVATION</div><h1>Live Traffic Ingest</h1><p>Capture passive network metadata from a local interface and stream it into DeepSentinel.</p></div><div class="live"><i></i><span id="state">OFFLINE</span></div></header>
+<section class="control panel">
+  <div class="control-title"><div><h2>Capture Control</h2><span>Select the interface visible to this machine. The capture uses passive sniffing only.</span></div><div class="actions"><button id="refresh">↻ Refresh</button><button id="start" class="primary">▶ Start Capture</button><button id="stop" class="danger" disabled>■ Stop</button></div></div>
+  <div class="row"><label>NETWORK INTERFACE<select id="iface"><option>Loading interfaces…</option></select></label><div class="notice"><b>⚠ Windows:</b> live capture normally requires <b>Npcap</b> and an elevated terminal.</div></div>
+</section>
+<section class="stats">
+ <div class="stat"><span>PACKETS</span><strong id="packets">0</strong><small>captured</small></div>
+ <div class="stat"><span>PACKET RATE</span><strong id="pps">0</strong><small>packets / sec</small></div>
+ <div class="stat"><span>TRAFFIC RATE</span><strong id="mbps">0</strong><small>Mbps observed</small></div>
+ <div class="stat"><span>BYTES</span><strong id="bytes">0 B</strong><small>captured</small></div>
+</section>
+<section class="grid">
+ <div class="panel chart-panel"><div class="panel-head"><div><h2>Traffic Signal</h2><span>Rolling packet-rate telemetry</span></div><b id="rateBadge">0 pkt/s</b></div><canvas id="chart"></canvas></div>
+ <div class="panel"><div class="panel-head"><div><h2>Protocols</h2><span>Observed packets</span></div></div><div id="protocols" class="bars"><div class="empty">Waiting for traffic…</div></div></div>
+</section>
+<section class="grid bottom">
+ <div class="panel"><div class="panel-head"><div><h2>Top Talkers</h2><span>Source addresses by packet count</span></div></div><div id="talkers" class="bars"><div class="empty">Waiting for traffic…</div></div></div>
+ <div class="panel"><div class="panel-head"><div><h2>Live Packet Feed</h2><span>Metadata only — no payload displayed</span></div><b class="readonly">READ ONLY</b></div><div class="feed-wrap"><table><thead><tr><th>TIME</th><th>SOURCE</th><th>DESTINATION</th><th>PROTO</th><th>SIZE</th></tr></thead><tbody id="feed"><tr><td colspan="5" class="empty">Start capture to see traffic.</td></tr></tbody></table></div></div>
+</section>
+<section class="panel alert-panel"><div class="panel-head"><div><h2>AI Threat Alerts</h2><span>Alerts arriving from the DeepSentinel backend</span></div><b id="alertCount">0 alerts</b></div><div id="alerts" class="alerts"><div class="empty">No alerts yet.</div></div></section>
+<footer>DeepSentinel • Passive monitoring prototype • Capture is read-only and does not transmit packets.</footer>
+</main></div>
+<script src="app.js"></script>
+</body></html>

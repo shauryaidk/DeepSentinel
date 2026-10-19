@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+confluent-kafka
+httpx
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.4
+joblib>=1.3
+python-multipart>=0.0.9
+scapy>=2.6
+onnxruntime>=1.18
+xgboost>=2.0
+shap>=0.45
